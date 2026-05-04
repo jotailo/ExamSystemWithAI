@@ -1,0 +1,48 @@
+spring:
+  application:
+    name: ai-code-helper
+  datasource:
+    url: jdbc:mysql://localhost:3306/exam_system?useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+mybatis-plus:
+  type-aliases-package: com.liuxuanhui.aicodehelper.exam.entity
+  configuration:
+    map-underscore-to-camel-case: true
+
+langchain4j:
+  community:
+    dashscope:
+      chat-model:
+        api-key: sk-09346a276366451092daa959b9f8c084
+        model-name: qwen-plus
+      embedding-model:
+        api-key: sk-09346a276366451092daa959b9f8c084
+        model-name: text-embedding-v4
+      streaming-chat-model:
+        model-name: qwen-plus
+        api-key: sk-09346a276366451092daa959b9f8c084
+bigmodel:
+  api-key: cc5955a522ce41428d0b03d3dd8b5673.6GpHYgYRrzlT9BGW
+
+server:
+  port: 8888
+
+# 文件上传本地路径配置
+file:
+  upload:
+    path: uploads
+    url-prefix: http://localhost:8888/files

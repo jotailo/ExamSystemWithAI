@@ -1,0 +1,61 @@
+@startuml
+skinparam rectangle {
+    BackgroundColor White
+    BorderColor Black
+    FontSize 12
+}
+skinparam linetype ortho
+
+rectangle "AI编程学习助手系统" as Root
+
+rectangle "管理员" as Admin
+rectangle "教师" as Teacher
+rectangle "学生" as Student
+
+rectangle "用户管理" as A1
+rectangle "公告管理" as A2
+rectangle "AI对话" as A3
+
+rectangle "题库管理" as T1
+rectangle "题目管理" as T2
+rectangle "考试管理" as T3
+rectangle "成绩管理" as T4
+rectangle "数据统计" as T5
+rectangle "AI对话 " as T6
+
+rectangle "登录注册" as S1
+rectangle "个人中心" as S2
+rectangle "考试列表" as S3
+rectangle "参加考试" as S4
+rectangle "成绩查询" as S5
+rectangle "错题查看" as S6
+rectangle "证书下载" as S7
+rectangle "公告查看" as S8
+rectangle "AI对话  " as S9
+
+Root --> Admin
+Root --> Teacher
+Root --> Student
+
+Admin --> A1
+Admin --> A2
+Admin --> A3
+
+Teacher --> T1
+Teacher --> T2
+Teacher --> T3
+Teacher --> T4
+Teacher --> T5
+Teacher --> T6
+
+Student --> S1
+Student --> S2
+Student --> S3
+Student --> S4
+Student --> S5
+Student --> S6
+Student --> S7
+Student --> S8
+Student --> S9
+
+@enduml

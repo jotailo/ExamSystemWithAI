@@ -1,0 +1,116 @@
+@startuml
+hide circle
+skinparam linetype ortho
+skinparam entity {
+    BackgroundColor White
+    BorderColor Black
+    FontSize 13
+}
+skinparam relationship {
+    BackgroundColor White
+    BorderColor Black
+}
+
+entity "用户" as User {
+    id <<PK>>
+    --
+    role_id <<FK>>
+    username
+    true_name
+    password
+    salt
+    status
+    create_date
+}
+
+entity "角色" as Role {
+    id <<PK>>
+    --
+    role_id
+    role_name
+    menu_info
+}
+
+entity "题库" as QuestionBank {
+    bank_id <<PK>>
+    --
+    bank_name
+}
+
+entity "题目" as Question {
+    id <<PK>>
+    --
+    qu_content
+    qu_type
+    level
+    image
+    qu_bank_id <<FK>>
+    create_person
+    create_time
+    analysis
+}
+
+entity "答案" as Answer {
+    id <<PK>>
+    --
+    question_id <<FK>>
+    all_option
+    true_option
+    images
+    analysis
+}
+
+entity "考试" as Exam {
+    exam_id <<PK>>
+    --
+    exam_name
+    exam_desc
+    type
+    password
+    duration
+    start_time
+    end_time
+    total_score
+    pass_score
+    status
+}
+
+entity "考试题目关联" as ExamQuestion {
+    id <<PK>>
+    --
+    exam_id <<FK>>
+    question_ids
+    scores
+}
+
+entity "考试记录" as ExamRecord {
+    record_id <<PK>>
+    --
+    user_id <<FK>>
+    exam_id <<FK>>
+    user_answers
+    exam_time
+    logic_score
+    total_score
+    error_question_ids
+}
+
+entity "公告" as Notice {
+    n_id <<PK>>
+    --
+    content
+    create_time
+    update_time
+    status
+}
+
+' 关系
+User }o--|| Role : "n:1 拥有"
+QuestionBank ||--o{ Question : "1:n 包含"
+Question ||--|| Answer : "1:1 对应"
+Exam ||--|| ExamQuestion : "1:1 组成"
+User ||--o{ ExamRecord : "1:n 产生"
+Exam ||--o{ ExamRecord : "1:n 生成"
+User ||--o{ Notice : "1:n 发布"
+
+@enduml
